@@ -16,12 +16,14 @@
             --neon-orange: #ff6b00;
 
             --bg-void: #000000;
-            --bg-card: #0a0a1a;
-            --bg-elevated: #12122a;
+            --bg-deep: #0a0a1a;
+
             --text-bright: #ffffff;
             --text-soft: #b8b8d0;
             --text-dim: #5a5a7a;
-            --border: rgba(255, 255, 255, 0.08);
+
+            --glass-1: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
 
             --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.4);
             --glow-red: 0 0 20px rgba(255, 0, 68, 0.4);
@@ -29,6 +31,9 @@
             --r-sm: 12px;
             --r-md: 18px;
             --r-lg: 24px;
+            --r-xl: 32px;
+            --r-full: 9999px;
+
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
@@ -174,7 +179,7 @@
 
         .login-error.show { display: block; }
 
-        /* ============ لوحة التحكم ============ */
+        /* ============ اللوحة ============ */
         .admin-panel {
             display: none;
             max-width: 1400px;
@@ -277,10 +282,43 @@
         .btn-ghost {
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-soft);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
         }
 
         .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); color: white; }
+
+        /* معلومات الحالة */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: var(--r-sm);
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: var(--text-soft);
+            flex-wrap: wrap;
+        }
+
+        .status-bar i {
+            color: var(--neon-cyan);
+        }
+
+        .status-bar strong {
+            color: var(--neon-lime);
+            font-weight: 800;
+        }
+
+        .status-bar.warn {
+            background: rgba(255, 107, 0, 0.05);
+            border-color: rgba(255, 107, 0, 0.2);
+        }
+
+        .status-bar.warn i {
+            color: var(--neon-orange);
+        }
 
         /* الإحصائيات */
         .stats-grid {
@@ -292,7 +330,7 @@
 
         .stat-card {
             background: rgba(10, 10, 26, 0.85);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             border-radius: var(--r-md);
             padding: 24px;
             text-align: center;
@@ -347,7 +385,7 @@
         .section-tab {
             padding: 10px 20px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             border-radius: var(--r-full);
             color: var(--text-soft);
             font-family: inherit;
@@ -382,7 +420,7 @@
 
         .channel-item {
             background: rgba(10, 10, 26, 0.85);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             border-radius: var(--r-md);
             padding: 16px;
             display: flex;
@@ -500,7 +538,7 @@
             height: 34px;
             border-radius: var(--r-sm);
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             color: var(--text-soft);
             cursor: pointer;
             display: flex;
@@ -527,12 +565,17 @@
             padding: 60px 20px;
             text-align: center;
             color: var(--text-dim);
+            background: rgba(10, 10, 26, 0.5);
+            border: 1px dashed var(--glass-border);
+            border-radius: var(--r-md);
         }
 
         .empty-state i {
             font-size: 48px;
             margin-bottom: 16px;
             opacity: 0.3;
+            display: block;
+            color: var(--neon-cyan);
         }
 
         .empty-state p {
@@ -580,7 +623,7 @@
             justify-content: space-between;
             margin-bottom: 24px;
             padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .modal-header h3 {
@@ -603,7 +646,7 @@
             height: 36px;
             border-radius: var(--r-sm);
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             color: var(--text-soft);
             cursor: pointer;
             display: flex;
@@ -640,7 +683,7 @@
             width: 100%;
             padding: 14px 16px;
             background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid var(--border);
+            border: 1.5px solid var(--glass-border);
             border-radius: var(--r-sm);
             color: white;
             font-family: inherit;
@@ -672,7 +715,7 @@
             cursor: pointer;
             padding: 12px 16px;
             background: rgba(0, 0, 0, 0.3);
-            border: 1.5px solid var(--border);
+            border: 1.5px solid var(--glass-border);
             border-radius: var(--r-sm);
             transition: all 0.2s;
         }
@@ -721,14 +764,13 @@
             color: var(--neon-cyan);
         }
 
-        /* معاينة الصورة */
         .image-preview {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 12px;
             background: rgba(0, 0, 0, 0.3);
-            border: 1px dashed var(--border);
+            border: 1px dashed var(--glass-border);
             border-radius: var(--r-sm);
             margin-top: 8px;
         }
@@ -753,7 +795,7 @@
             gap: 10px;
             margin-top: 24px;
             padding-top: 20px;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--glass-border);
         }
 
         .modal-footer .btn {
@@ -776,7 +818,7 @@
         .toast {
             padding: 14px 20px;
             background: rgba(10, 10, 26, 0.95);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             border-radius: var(--r-sm);
             color: white;
             font-size: 14px;
@@ -807,7 +849,7 @@
             min-height: 200px;
             padding: 16px;
             background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid var(--border);
+            border: 1.5px solid var(--glass-border);
             border-radius: var(--r-sm);
             color: var(--neon-lime);
             font-family: 'Courier New', monospace;
@@ -833,7 +875,7 @@
 
         .section-card {
             background: rgba(10, 10, 26, 0.85);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-border);
             border-radius: var(--r-md);
             padding: 16px;
             display: flex;
@@ -890,7 +932,7 @@
             max-width: 400px;
             padding: 12px 16px 12px 44px;
             background: rgba(0, 0, 0, 0.5);
-            border: 1.5px solid var(--border);
+            border: 1.5px solid var(--glass-border);
             border-radius: var(--r-sm);
             color: white;
             font-family: inherit;
@@ -950,10 +992,9 @@
         </div>
     </div>
 
-    <!-- ============ لوحة التحكم ============ -->
+    <!-- ============ اللوحة ============ -->
     <div class="admin-panel" id="adminPanel">
 
-        <!-- الرأس -->
         <div class="admin-header">
             <div class="admin-brand">
                 <img src="https://www2.0zz0.com/2025/01/21/22/821115606.png" alt="MS TV">
@@ -976,6 +1017,12 @@
                     <i class="fas fa-sign-out-alt"></i> خروج
                 </button>
             </div>
+        </div>
+
+        <!-- شريط الحالة -->
+        <div class="status-bar" id="statusBar">
+            <i class="fas fa-info-circle"></i>
+            <span id="statusText">جاري التحميل...</span>
         </div>
 
         <!-- الإحصائيات -->
@@ -1003,25 +1050,11 @@
         </div>
 
         <!-- تبويبات الأقسام -->
-        <div class="section-tabs" id="sectionTabs">
-            <button class="section-tab active" data-section="all">
-                <i class="fas fa-globe"></i> الكل
-            </button>
-            <button class="section-tab" data-section="live">
-                <i class="fas fa-circle" style="color:#ff0044;font-size:8px;"></i> مباشر
-            </button>
-            <!-- سيتم إضافة الأقسام ديناميكياً -->
-        </div>
+        <div class="section-tabs" id="sectionTabs"></div>
 
-        <!-- البحث -->
-        <input type="text" id="searchInput" class="search-bar" placeholder="ابحث في القنوات...">
-
-        <!-- عنوان القنوات + زر إضافة -->
+        <!-- البحث + أزرار الإضافة -->
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
-            <div class="view-title">
-                <i class="fas fa-tv"></i>
-                <span>القنوات (<span id="channelCount">0</span>)</span>
-            </div>
+            <input type="text" id="searchInput" class="search-bar" placeholder="ابحث في القنوات...">
             <div style="display:flex;gap:8px;">
                 <button class="btn btn-ghost" id="addSectionBtn">
                     <i class="fas fa-folder-plus"></i> قسم جديد
@@ -1032,24 +1065,25 @@
             </div>
         </div>
 
-        <!-- شبكة القنوات -->
-        <div class="channels-grid" id="channelsGrid">
-            <div class="empty-state">
-                <i class="fas fa-inbox"></i>
-                <p>لا توجد قنوات بعد</p>
-            </div>
+        <!-- عنوان القنوات -->
+        <div class="view-title">
+            <i class="fas fa-tv"></i>
+            <span>القنوات (<span id="channelCount">0</span>)</span>
         </div>
+
+        <!-- شبكة القنوات -->
+        <div class="channels-grid" id="channelsGrid"></div>
 
         <!-- قائمة الأقسام -->
         <div class="view-title" style="margin-top:32px;">
             <i class="fas fa-layer-group"></i>
-            <span>الأقسام</span>
+            <span>الأقسام (<span id="sectionCount">0</span>)</span>
         </div>
         <div class="sections-list" id="sectionsList"></div>
 
     </div>
 
-    <!-- ============ Modal إضافة/تعديل قناة ============ -->
+    <!-- ============ Modal قناة ============ -->
     <div class="modal" id="channelModal">
         <div class="modal-box">
             <div class="modal-header">
@@ -1104,7 +1138,7 @@
         </div>
     </div>
 
-    <!-- ============ Modal إضافة/تعديل قسم ============ -->
+    <!-- ============ Modal قسم ============ -->
     <div class="modal" id="sectionModal">
         <div class="modal-box">
             <div class="modal-header">
@@ -1154,7 +1188,7 @@
         </div>
     </div>
 
-    <!-- ============ Modal تصدير JSON ============ -->
+    <!-- ============ Modal تصدير ============ -->
     <div class="modal" id="exportModal">
         <div class="modal-box" style="max-width:700px;">
             <div class="modal-header">
@@ -1184,7 +1218,7 @@
         </div>
     </div>
 
-    <!-- ============ Modal استيراد JSON ============ -->
+    <!-- ============ Modal استيراد ============ -->
     <div class="modal" id="importModal">
         <div class="modal-box" style="max-width:700px;">
             <div class="modal-header">
@@ -1218,13 +1252,17 @@
         (function() {
             'use strict';
 
-            /* ============ الإعدادات ============ */
-            var ADMIN_PASSWORD = 'admin2025'; // ← غيّر كلمة المرور من هنا
-            var STORAGE_KEY = 'msTVAdminData';
-            var SESSION_KEY = 'msTVAdminSession';
-            var GITHUB_DATA_URL = './data.json'; // مسار الملف في المستودع
+            /* ============================================================
+               الإعدادات
+               ============================================================ */
+            var ADMIN_PASSWORD = 'admin2025'; // ← غيّر كلمة المرور هنا
+            var STORAGE_KEY = 'msTVAdminData_v2';
+            var SESSION_KEY = 'msTVAdminSession_v2';
+            var DATA_URL = './data.json';
 
-            /* ============ الحالة ============ */
+            /* ============================================================
+               الحالة
+               ============================================================ */
             var data = {
                 version: '1.0.0',
                 lastUpdate: new Date().toISOString(),
@@ -1235,12 +1273,21 @@
             var currentSection = 'all';
             var searchQuery = '';
             var draggedId = null;
+            var dataSource = 'empty'; // 'localStorage' | 'data.json' | 'empty'
 
-            /* ============ Helpers ============ */
+            /* ============================================================
+               Helpers
+               ============================================================ */
             var $ = function(id) { return document.getElementById(id); };
 
             function uid(prefix) {
                 return (prefix || 'id') + '_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 6);
+            }
+
+            function escapeHtml(str) {
+                var div = document.createElement('div');
+                div.textContent = str || '';
+                return div.innerHTML;
             }
 
             function showToast(message, type) {
@@ -1264,12 +1311,6 @@
                 }, 3000);
             }
 
-            function escapeHtml(str) {
-                var div = document.createElement('div');
-                div.textContent = str;
-                return div.innerHTML;
-            }
-
             function getSectionById(id) {
                 for (var i = 0; i < data.sections.length; i++) {
                     if (data.sections[i].id === id) return data.sections[i];
@@ -1277,56 +1318,77 @@
                 return null;
             }
 
-            /* ============ التخزين ============ */
+            function updateStatusBar(text, isWarn) {
+                $('statusText').innerHTML = text;
+                if (isWarn) {
+                    $('statusBar').classList.add('warn');
+                } else {
+                    $('statusBar').classList.remove('warn');
+                }
+            }
+
+            /* ============================================================
+               التخزين
+               ============================================================ */
             function saveData() {
                 try {
+                    data.lastUpdate = new Date().toISOString();
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
                     return true;
                 } catch(e) {
+                    console.error('saveData error:', e);
                     return false;
                 }
             }
 
-            function loadData() {
+            function loadFromStorage() {
                 try {
                     var stored = localStorage.getItem(STORAGE_KEY);
                     if (stored) {
                         var parsed = JSON.parse(stored);
-                        if (parsed && parsed.sections && parsed.channels) {
+                        if (parsed && Array.isArray(parsed.sections) && Array.isArray(parsed.channels)) {
                             data = parsed;
+                            dataSource = 'localStorage';
                             return true;
                         }
                     }
-                } catch(e) {}
+                } catch(e) {
+                    console.error('loadFromStorage error:', e);
+                }
                 return false;
             }
 
-            // تحميل من data.json إذا لم يكن هناك تخزين محلي
             function loadFromJson() {
-                return fetch(GITHUB_DATA_URL + '?t=' + Date.now())
+                return fetch(DATA_URL + '?t=' + Date.now())
                     .then(function(r) {
-                        if (!r.ok) throw new Error('Failed');
+                        if (!r.ok) throw new Error('HTTP ' + r.status);
                         return r.json();
                     })
                     .then(function(json) {
-                        if (json && json.sections && json.channels) {
+                        if (json && Array.isArray(json.sections) && Array.isArray(json.channels)) {
                             data = json;
+                            dataSource = 'data.json';
                             saveData();
                             return true;
                         }
-                        return false;
+                        throw new Error('Invalid structure');
                     })
-                    .catch(function() { return false; });
+                    .catch(function(err) {
+                        console.warn('loadFromJson failed:', err);
+                        return false;
+                    });
             }
 
-            /* ============ تسجيل الدخول ============ */
+            /* ============================================================
+               تسجيل الدخول
+               ============================================================ */
             function tryLogin() {
                 var pwd = $('adminPassword').value;
                 if (pwd === ADMIN_PASSWORD) {
                     try { localStorage.setItem(SESSION_KEY, '1'); } catch(e) {}
                     $('loginOverlay').classList.add('hidden');
                     $('adminPanel').classList.add('active');
-                    init();
+                    boot();
                 } else {
                     $('loginError').classList.add('show');
                     $('adminPassword').value = '';
@@ -1340,64 +1402,109 @@
                 location.reload();
             }
 
-            /* ============ العرض ============ */
+            /* ============================================================
+               العرض
+               ============================================================ */
             function updateStats() {
                 $('statChannels').textContent = data.channels.length;
                 $('statSections').textContent = data.sections.length;
-                $('statLive').textContent = data.channels.filter(function(c) { return c.live; }).length;
+                var liveCount = 0;
+                for (var i = 0; i < data.channels.length; i++) {
+                    if (data.channels[i].live) liveCount++;
+                }
+                $('statLive').textContent = liveCount;
+
                 if (data.lastUpdate) {
                     var d = new Date(data.lastUpdate);
-                    $('statLastUpdate').textContent = d.toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' });
+                    var now = new Date();
+                    var diffMs = now - d;
+                    var diffMin = Math.floor(diffMs / 60000);
+                    if (diffMin < 1) {
+                        $('statLastUpdate').textContent = 'الآن';
+                    } else if (diffMin < 60) {
+                        $('statLastUpdate').textContent = diffMin + ' د';
+                    } else if (diffMin < 1440) {
+                        $('statLastUpdate').textContent = Math.floor(diffMin / 60) + ' س';
+                    } else {
+                        $('statLastUpdate').textContent = d.toLocaleDateString('ar-EG', { month: 'short', day: 'numeric' });
+                    }
                 }
             }
 
             function renderSectionTabs() {
-                var tabs = $('sectionTabs');
-                // احفظ أول 2
-                var html = '<button class="section-tab ' + (currentSection === 'all' ? 'active' : '') + '" data-section="all"><i class="fas fa-globe"></i> الكل</button>' +
-                           '<button class="section-tab ' + (currentSection === 'live' ? 'active' : '') + '" data-section="live"><i class="fas fa-circle" style="color:#ff0044;font-size:8px;"></i> مباشر</button>';
+                var html = '';
+                var allActive = currentSection === 'all' ? ' active' : '';
+                var allCount = data.channels.length;
+                html += '<button class="section-tab' + allActive + '" data-section="all">' +
+                    '<i class="fas fa-globe"></i> الكل (' + allCount + ')</button>';
 
-                data.sections.forEach(function(s) {
-                    var isActive = currentSection === s.id ? 'active' : '';
-                    html += '<button class="section-tab ' + isActive + '" data-section="' + s.id + '">' +
-                        '<i class="fas ' + (s.icon || 'fa-folder') + '" style="color:' + (s.color || '#00f0ff') + ';"></i> ' +
-                        escapeHtml(s.name) + '</button>';
-                });
-                tabs.innerHTML = html;
+                var liveCount = 0;
+                for (var i = 0; i < data.channels.length; i++) {
+                    if (data.channels[i].live) liveCount++;
+                }
+                if (liveCount > 0) {
+                    var liveActive = currentSection === 'live' ? ' active' : '';
+                    html += '<button class="section-tab' + liveActive + '" data-section="live">' +
+                        '<i class="fas fa-circle" style="color:#ff0044;font-size:8px;"></i> مباشر (' + liveCount + ')</button>';
+                }
+
+                for (var j = 0; j < data.sections.length; j++) {
+                    var s = data.sections[j];
+                    var count = 0;
+                    for (var k = 0; k < data.channels.length; k++) {
+                        if (data.channels[k].section === s.id) count++;
+                    }
+                    var isActive = currentSection === s.id ? ' active' : '';
+                    html += '<button class="section-tab' + isActive + '" data-section="' + escapeHtml(s.id) + '">' +
+                        '<i class="fas ' + escapeHtml(s.icon || 'fa-folder') + '" style="color:' + (s.color || '#00f0ff') + ';"></i> ' +
+                        escapeHtml(s.name) + ' (' + count + ')</button>';
+                }
+
+                $('sectionTabs').innerHTML = html;
             }
 
             function renderSectionsList() {
                 var container = $('sectionsList');
+                $('sectionCount').textContent = data.sections.length;
+
                 if (data.sections.length === 0) {
-                    container.innerHTML = '<div class="empty-state" style="grid-column:1/-1;padding:30px;"><p>لا توجد أقسام</p></div>';
+                    container.innerHTML = '<div class="empty-state">' +
+                        '<i class="fas fa-folder-open"></i>' +
+                        '<p>لا توجد أقسام بعد</p>' +
+                        '<button class="btn btn-primary" onclick="window.addSection()"><i class="fas fa-plus"></i> إضافة قسم</button>' +
+                    '</div>';
                     return;
                 }
 
                 var html = '';
-                data.sections.forEach(function(s) {
-                    var count = data.channels.filter(function(c) { return c.section === s.id; }).length;
+                for (var i = 0; i < data.sections.length; i++) {
+                    var s = data.sections[i];
+                    var count = 0;
+                    for (var j = 0; j < data.channels.length; j++) {
+                        if (data.channels[j].section === s.id) count++;
+                    }
                     html += '<div class="section-card">' +
                         '<div class="section-icon" style="background:' + (s.color || '#00f0ff') + '20;color:' + (s.color || '#00f0ff') + ';">' +
-                            '<i class="fas ' + (s.icon || 'fa-folder') + '"></i>' +
+                            '<i class="fas ' + escapeHtml(s.icon || 'fa-folder') + '"></i>' +
                         '</div>' +
                         '<div class="section-info">' +
                             '<h4>' + escapeHtml(s.name) + '</h4>' +
                             '<p>' + count + ' قناة</p>' +
                         '</div>' +
                         '<div style="display:flex;gap:6px;">' +
-                            '<button class="icon-btn" onclick="editSection(\'' + s.id + '\')" title="تعديل"><i class="fas fa-pen"></i></button>' +
-                            '<button class="icon-btn danger" onclick="deleteSection(\'' + s.id + '\')" title="حذف"><i class="fas fa-trash"></i></button>' +
+                            '<button class="icon-btn" data-action="edit-section" data-id="' + escapeHtml(s.id) + '" title="تعديل"><i class="fas fa-pen"></i></button>' +
+                            '<button class="icon-btn danger" data-action="delete-section" data-id="' + escapeHtml(s.id) + '" title="حذف"><i class="fas fa-trash"></i></button>' +
                         '</div>' +
                     '</div>';
-                });
+                }
                 container.innerHTML = html;
             }
 
             function renderChannels() {
                 var container = $('channelsGrid');
 
-                // تصفية
                 var filtered = data.channels.slice();
+
                 if (currentSection === 'live') {
                     filtered = filtered.filter(function(c) { return c.live; });
                 } else if (currentSection !== 'all') {
@@ -1411,7 +1518,6 @@
                     });
                 }
 
-                // ترتيب
                 filtered.sort(function(a, b) {
                     return (a.order || 0) - (b.order || 0);
                 });
@@ -1419,105 +1525,134 @@
                 $('channelCount').textContent = filtered.length;
 
                 if (filtered.length === 0) {
+                    var emptyMsg = data.channels.length === 0 ?
+                        'لا توجد قنوات بعد' :
+                        'لا توجد نتائج مطابقة';
                     container.innerHTML = '<div class="empty-state">' +
                         '<i class="fas fa-inbox"></i>' +
-                        '<p>لا توجد قنوات</p>' +
-                        '<button class="btn btn-primary" onclick="addChannel()"><i class="fas fa-plus"></i> إضافة قناة</button>' +
+                        '<p>' + emptyMsg + '</p>' +
+                        (data.channels.length === 0 ? '<button class="btn btn-primary" onclick="window.addChannel()"><i class="fas fa-plus"></i> إضافة قناة</button>' : '') +
                     '</div>';
                     return;
                 }
 
                 var html = '';
-                filtered.forEach(function(ch) {
+                for (var i = 0; i < filtered.length; i++) {
+                    var ch = filtered[i];
                     var sec = getSectionById(ch.section);
                     var secBadge = sec ?
-                        '<span class="meta-badge section"><i class="fas ' + (sec.icon || 'fa-folder') + '"></i> ' + escapeHtml(sec.name) + '</span>' :
+                        '<span class="meta-badge section"><i class="fas ' + escapeHtml(sec.icon || 'fa-folder') + '"></i> ' + escapeHtml(sec.name) + '</span>' :
                         '<span class="meta-badge section">غير محدد</span>';
                     var liveBadge = ch.live ? '<span class="meta-badge live">مباشر</span>' : '';
 
-                    html += '<div class="channel-item" draggable="true" data-id="' + ch.id + '">' +
+                    html += '<div class="channel-item" draggable="true" data-id="' + escapeHtml(ch.id) + '">' +
                         '<div class="drag-handle"><i class="fas fa-grip-vertical"></i></div>' +
-                        '<div class="channel-logo"><img src="' + escapeHtml(ch.logo || '') + '" alt="" onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23000%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%2300f0ff%22 font-size=%2240%22%3E%3F%3C/text%3E%3C/svg%3E\'"></div>' +
+                        '<div class="channel-logo">' +
+                            '<img src="' + escapeHtml(ch.logo || '') + '" alt="" ' +
+                            'onerror="this.src=\'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%2312122a%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%2300f0ff%22 font-size=%2230%22%3E%3F%3C/text%3E%3C/svg%3E\'">' +
+                        '</div>' +
                         '<div class="channel-info">' +
                             '<h4>' + escapeHtml(ch.name) + '</h4>' +
                             '<div class="channel-meta">' + secBadge + liveBadge + '</div>' +
                         '</div>' +
                         '<div class="channel-actions">' +
-                            '<button class="icon-btn" onclick="editChannel(\'' + ch.id + '\')" title="تعديل"><i class="fas fa-pen"></i></button>' +
-                            '<button class="icon-btn danger" onclick="deleteChannel(\'' + ch.id + '\')" title="حذف"><i class="fas fa-trash"></i></button>' +
+                            '<button class="icon-btn" data-action="edit-channel" data-id="' + escapeHtml(ch.id) + '" title="تعديل"><i class="fas fa-pen"></i></button>' +
+                            '<button class="icon-btn danger" data-action="delete-channel" data-id="' + escapeHtml(ch.id) + '" title="حذف"><i class="fas fa-trash"></i></button>' +
                         '</div>' +
                     '</div>';
-                });
+                }
                 container.innerHTML = html;
 
-                // drag and drop
                 setupDragAndDrop();
             }
 
-            function setupDragAndDrop() {
-                var items = $('channelsGrid').querySelectorAll('.channel-item');
-                items.forEach(function(item) {
-                    item.addEventListener('dragstart', function(e) {
-                        draggedId = this.getAttribute('data-id');
-                        this.classList.add('dragging');
-                        e.dataTransfer.effectAllowed = 'move';
-                    });
-                    item.addEventListener('dragend', function() {
-                        this.classList.remove('dragging');
-                        draggedId = null;
-                    });
-                    item.addEventListener('dragover', function(e) {
-                        e.preventDefault();
-                        e.dataTransfer.dropEffect = 'move';
-                        return false;
-                    });
-                    item.addEventListener('drop', function(e) {
-                        e.preventDefault();
-                        var targetId = this.getAttribute('data-id');
-                        if (!draggedId || draggedId === targetId) return;
-
-                        // إعادة الترتيب
-                        var draggedIdx = -1, targetIdx = -1;
-                        for (var i = 0; i < data.channels.length; i++) {
-                            if (data.channels[i].id === draggedId) draggedIdx = i;
-                            if (data.channels[i].id === targetId) targetIdx = i;
-                        }
-                        if (draggedIdx === -1 || targetIdx === -1) return;
-
-                        var dragged = data.channels.splice(draggedIdx, 1)[0];
-                        data.channels.splice(targetIdx, 0, dragged);
-
-                        // تحديث order
-                        data.channels.forEach(function(c, i) { c.order = i + 1; });
-
-                        saveData();
-                        renderChannels();
-                        showToast('تم تغيير الترتيب', 'success');
-                    });
-                });
+            function renderAll() {
+                updateStats();
+                renderSectionTabs();
+                renderSectionsList();
+                renderChannels();
             }
 
-            /* ============ قنوات ============ */
+            /* ============================================================
+               Drag & Drop
+               ============================================================ */
+            function setupDragAndDrop() {
+                var items = $('channelsGrid').querySelectorAll('.channel-item');
+                for (var i = 0; i < items.length; i++) {
+                    (function(item) {
+                        item.addEventListener('dragstart', function(e) {
+                            draggedId = this.getAttribute('data-id');
+                            this.classList.add('dragging');
+                            e.dataTransfer.effectAllowed = 'move';
+                        });
+                        item.addEventListener('dragend', function() {
+                            this.classList.remove('dragging');
+                            draggedId = null;
+                        });
+                        item.addEventListener('dragover', function(e) {
+                            e.preventDefault();
+                            e.dataTransfer.dropEffect = 'move';
+                            return false;
+                        });
+                        item.addEventListener('drop', function(e) {
+                            e.preventDefault();
+                            var targetId = this.getAttribute('data-id');
+                            if (!draggedId || draggedId === targetId) return;
+
+                            var draggedIdx = -1, targetIdx = -1;
+                            for (var j = 0; j < data.channels.length; j++) {
+                                if (data.channels[j].id === draggedId) draggedIdx = j;
+                                if (data.channels[j].id === targetId) targetIdx = j;
+                            }
+                            if (draggedIdx === -1 || targetIdx === -1) return;
+
+                            var dragged = data.channels.splice(draggedIdx, 1)[0];
+                            data.channels.splice(targetIdx, 0, dragged);
+
+                            for (var k = 0; k < data.channels.length; k++) {
+                                data.channels[k].order = k + 1;
+                            }
+
+                            saveData();
+                            renderChannels();
+                            showToast('تم تغيير الترتيب وحفظه', 'success');
+                        });
+                    })(items[i]);
+                }
+            }
+
+            /* ============================================================
+               قنوات
+               ============================================================ */
             function openChannelModal(channelId) {
                 var isEdit = !!channelId;
                 $('channelModalTitle').textContent = isEdit ? 'تعديل قناة' : 'قناة جديدة';
 
-                // املأ الأقسام في القائمة
+                // املأ الأقسام
                 var select = $('channelSection');
                 select.innerHTML = '';
-                data.sections.forEach(function(s) {
+
+                if (data.sections.length === 0) {
                     var opt = document.createElement('option');
-                    opt.value = s.id;
-                    opt.textContent = s.name;
+                    opt.value = '';
+                    opt.textContent = '— لا توجد أقسام — أضف قسماً أولاً';
                     select.appendChild(opt);
-                });
+                } else {
+                    for (var i = 0; i < data.sections.length; i++) {
+                        var opt2 = document.createElement('option');
+                        opt2.value = data.sections[i].id;
+                        opt2.textContent = data.sections[i].name;
+                        select.appendChild(opt2);
+                    }
+                }
 
                 if (isEdit) {
                     var ch = null;
-                    for (var i = 0; i < data.channels.length; i++) {
-                        if (data.channels[i].id === channelId) { ch = data.channels[i]; break; }
+                    for (var j = 0; j < data.channels.length; j++) {
+                        if (data.channels[j].id === channelId) { ch = data.channels[j]; break; }
                     }
                     if (!ch) return;
+
                     $('channelId').value = ch.id;
                     $('channelName').value = ch.name || '';
                     $('channelLogo').value = ch.logo || '';
@@ -1531,7 +1666,7 @@
                     $('channelLogo').value = '';
                     $('channelUrl').value = '';
                     if (data.sections.length > 0) {
-                        $('channelSection').value = data.sections[0].id;
+                        $('channelSection').value = currentSection !== 'all' && currentSection !== 'live' ? currentSection : data.sections[0].id;
                     }
                     $('channelLive').checked = false;
                     $('imagePreview').style.display = 'none';
@@ -1568,10 +1703,9 @@
                 if (!name) { showToast('اسم القناة مطلوب', 'error'); return; }
                 if (!logo) { showToast('رابط الشعار مطلوب', 'error'); return; }
                 if (!url) { showToast('رابط القناة مطلوب', 'error'); return; }
-                if (!section) { showToast('القسم مطلوب', 'error'); return; }
+                if (!section) { showToast('يجب اختيار قسم — أضف قسماً أولاً', 'error'); return; }
 
                 if (id) {
-                    // تعديل
                     for (var i = 0; i < data.channels.length; i++) {
                         if (data.channels[i].id === id) {
                             data.channels[i].name = name;
@@ -1582,11 +1716,12 @@
                             break;
                         }
                     }
-                    showToast('تم تحديث القناة', 'success');
+                    showToast('تم تحديث القناة بنجاح ✓', 'success');
                 } else {
-                    // إضافة
                     var maxOrder = 0;
-                    data.channels.forEach(function(c) { if (c.order > maxOrder) maxOrder = c.order; });
+                    for (var j = 0; j < data.channels.length; j++) {
+                        if ((data.channels[j].order || 0) > maxOrder) maxOrder = data.channels[j].order;
+                    }
                     data.channels.push({
                         id: uid('ch'),
                         name: name,
@@ -1596,14 +1731,22 @@
                         live: live,
                         order: maxOrder + 1
                     });
-                    showToast('تمت إضافة القناة', 'success');
+                    showToast('تمت إضافة القناة بنجاح ✓', 'success');
                 }
 
-                data.lastUpdate = new Date().toISOString();
-                saveData();
+                // حفظ فوري + تحديث الواجهة
+                var saved = saveData();
                 closeModal('channelModal');
-                updateStats();
-                renderChannels();
+                renderAll();
+                updateStatusBar(
+                    '<i class="fas fa-check-circle" style="color:#00ff88;"></i> ' +
+                    'آخر تعديل محفوظ تلقائياً — لا تنسَ تصدير JSON ورفعه على GitHub',
+                    false
+                );
+
+                if (!saved) {
+                    showToast('تحذير: قد لا يكون الحفظ دائماً', 'error');
+                }
             }
 
             function deleteChannel(id) {
@@ -1614,16 +1757,20 @@
                 if (!ch) return;
                 if (!confirm('حذف القناة "' + ch.name + '"؟')) return;
 
-                data.channels = data.channels.filter(function(c) { return c.id !== id; });
-                data.lastUpdate = new Date().toISOString();
+                var newChannels = [];
+                for (var j = 0; j < data.channels.length; j++) {
+                    if (data.channels[j].id !== id) newChannels.push(data.channels[j]);
+                }
+                data.channels = newChannels;
+
                 saveData();
-                updateStats();
-                renderChannels();
-                renderSectionsList();
+                renderAll();
                 showToast('تم حذف القناة', 'success');
             }
 
-            /* ============ أقسام ============ */
+            /* ============================================================
+               أقسام
+               ============================================================ */
             function openSectionModal(sectionId) {
                 var isEdit = !!sectionId;
                 $('sectionModalTitle').textContent = isEdit ? 'تعديل قسم' : 'قسم جديد';
@@ -1658,10 +1805,10 @@
                 var color = $('sectionColor').value;
 
                 if (!name) { showToast('اسم القسم مطلوب', 'error'); return; }
-                if (!slug) { showToast('المعرف مطلوب (إنجليزي)', 'error'); return; }
+                if (!slug) { showToast('المعرف مطلوب (حروف إنجليزية فقط)', 'error'); return; }
 
                 if (id) {
-                    // تعديل
+                    // تعديل - الـ slug لا يتغير
                     for (var i = 0; i < data.sections.length; i++) {
                         if (data.sections[i].id === id) {
                             data.sections[i].name = name;
@@ -1670,11 +1817,11 @@
                             break;
                         }
                     }
-                    showToast('تم تحديث القسم', 'success');
+                    showToast('تم تحديث القسم بنجاح ✓', 'success');
                 } else {
-                    // تحقق من عدم التكرار
+                    // تحقق من التكرار
                     if (getSectionById(slug)) {
-                        showToast('المعرف موجود مسبقاً', 'error');
+                        showToast('المعرف موجود مسبقاً — اختر معرّفاً آخر', 'error');
                         return;
                     }
                     data.sections.push({
@@ -1683,41 +1830,56 @@
                         icon: icon,
                         color: color
                     });
-                    showToast('تمت إضافة القسم', 'success');
+                    showToast('تمت إضافة القسم بنجاح ✓', 'success');
                 }
 
-                data.lastUpdate = new Date().toISOString();
                 saveData();
                 closeModal('sectionModal');
-                updateStats();
-                renderSectionTabs();
-                renderSectionsList();
-                renderChannels();
+                renderAll();
+                updateStatusBar(
+                    '<i class="fas fa-check-circle" style="color:#00ff88;"></i> ' +
+                    'آخر تعديل محفوظ تلقائياً — لا تنسَ تصدير JSON ورفعه على GitHub',
+                    false
+                );
             }
 
             function deleteSection(id) {
                 var s = getSectionById(id);
                 if (!s) return;
-                var count = data.channels.filter(function(c) { return c.section === id; }).length;
+                var count = 0;
+                for (var i = 0; i < data.channels.length; i++) {
+                    if (data.channels[i].section === id) count++;
+                }
 
                 var msg = 'حذف القسم "' + s.name + '"؟';
                 if (count > 0) {
-                    msg += '\n\nتحذير: يوجد ' + count + ' قناة مرتبطة بهذا القسم.';
+                    msg += '\n\n⚠️ تحذير: يوجد ' + count + ' قناة مرتبطة بهذا القسم.';
+                    msg += '\nسيتم حذفها جميعاً. متابعة؟';
                 }
                 if (!confirm(msg)) return;
 
-                data.sections = data.sections.filter(function(x) { return x.id !== id; });
-                data.channels = data.channels.filter(function(c) { return c.section !== id; });
-                data.lastUpdate = new Date().toISOString();
+                var newSections = [];
+                for (var j = 0; j < data.sections.length; j++) {
+                    if (data.sections[j].id !== id) newSections.push(data.sections[j]);
+                }
+                data.sections = newSections;
+
+                var newChannels = [];
+                for (var k = 0; k < data.channels.length; k++) {
+                    if (data.channels[k].section !== id) newChannels.push(data.channels[k]);
+                }
+                data.channels = newChannels;
+
+                if (currentSection === id) currentSection = 'all';
+
                 saveData();
-                updateStats();
-                renderSectionTabs();
-                renderSectionsList();
-                renderChannels();
-                showToast('تم حذف القسم', 'success');
+                renderAll();
+                showToast('تم حذف القسم وقنواته', 'success');
             }
 
-            /* ============ Modal helpers ============ */
+            /* ============================================================
+               Modal helpers
+               ============================================================ */
             function openModal(id) {
                 $(id).classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -1728,7 +1890,9 @@
                 document.body.style.overflow = '';
             }
 
-            /* ============ تصدير / استيراد ============ */
+            /* ============================================================
+               تصدير / استيراد
+               ============================================================ */
             function exportJson() {
                 data.lastUpdate = new Date().toISOString();
                 saveData();
@@ -1743,9 +1907,9 @@
                 ta.setSelectionRange(0, 99999);
                 try {
                     document.execCommand('copy');
-                    showToast('تم النسخ إلى الحافظة', 'success');
+                    showToast('تم النسخ إلى الحافظة ✓', 'success');
                 } catch(e) {
-                    showToast('فشل النسخ', 'error');
+                    showToast('فشل النسخ — انسخ يدوياً', 'error');
                 }
             }
 
@@ -1758,7 +1922,7 @@
                 a.download = 'data.json';
                 a.click();
                 URL.revokeObjectURL(url);
-                showToast('تم تحميل الملف', 'success');
+                showToast('تم تحميل الملف ✓', 'success');
             }
 
             function confirmImport() {
@@ -1766,32 +1930,75 @@
                 if (!text) { showToast('الرجاء لصق JSON', 'error'); return; }
                 try {
                     var parsed = JSON.parse(text);
-                    if (!parsed.sections || !parsed.channels) {
-                        showToast('البيانات غير صالحة', 'error');
+                    if (!Array.isArray(parsed.sections) || !Array.isArray(parsed.channels)) {
+                        showToast('البنية غير صالحة — يجب أن تحتوي على sections و channels', 'error');
                         return;
                     }
                     if (!confirm('سيتم استبدال جميع البيانات الحالية. متابعة؟')) return;
-                    data = parsed;
+
+                    data = {
+                        version: parsed.version || '1.0.0',
+                        lastUpdate: new Date().toISOString(),
+                        settings: parsed.settings || {},
+                        sections: parsed.sections,
+                        channels: parsed.channels
+                    };
+
                     saveData();
                     closeModal('importModal');
-                    updateStats();
-                    renderSectionTabs();
-                    renderSectionsList();
-                    renderChannels();
-                    showToast('تم الاستيراد بنجاح', 'success');
+                    renderAll();
+                    showToast('تم الاستيراد بنجاح ✓', 'success');
                 } catch(e) {
                     showToast('JSON غير صالح: ' + e.message, 'error');
                 }
             }
 
-            /* ============ التهيئة ============ */
-            function init() {
-                // ربط الأحداث
+            /* ============================================================
+               التهيئة
+               ============================================================ */
+            function boot() {
+                // 1. حاول التحميل من localStorage
+                if (loadFromStorage()) {
+                    updateStatusBar(
+                        '<i class="fas fa-database"></i> البيانات محملة من <strong>ذاكرة المتصفح</strong> — عدد: ' +
+                        data.channels.length + ' قناة، ' + data.sections.length + ' قسم',
+                        false
+                    );
+                    renderAll();
+                    return;
+                }
+
+                // 2. حاول من data.json
+                updateStatusBar('<i class="fas fa-spinner fa-spin"></i> جاري التحميل من data.json...', false);
+
+                loadFromJson().then(function(ok) {
+                    if (ok) {
+                        updateStatusBar(
+                            '<i class="fas fa-cloud-download-alt"></i> تم التحميل من <strong>data.json</strong> — عدد: ' +
+                            data.channels.length + ' قناة، ' + data.sections.length + ' قسم',
+                            false
+                        );
+                    } else {
+                        updateStatusBar(
+                            '<i class="fas fa-info-circle"></i> لم يتم العثور على data.json — بدء من <strong>صفر</strong>. أضف قسماً أولاً',
+                            true
+                        );
+                    }
+                    renderAll();
+                });
+            }
+
+            function bindEvents() {
+                // أزرار رئيسية
                 $('saveBtn').onclick = function() {
-                    data.lastUpdate = new Date().toISOString();
                     if (saveData()) {
-                        showToast('تم الحفظ', 'success');
+                        showToast('تم الحفظ ✓', 'success');
                         updateStats();
+                        updateStatusBar(
+                            '<i class="fas fa-check-circle" style="color:#00ff88;"></i> ' +
+                            'تم الحفظ بنجاح — آخر تحديث: الآن',
+                            false
+                        );
                     } else {
                         showToast('فشل الحفظ', 'error');
                     }
@@ -1808,6 +2015,7 @@
                 $('downloadJsonBtn').onclick = downloadJson;
                 $('confirmImportBtn').onclick = confirmImport;
 
+                // إضافة
                 $('addChannelBtn').onclick = function() { openChannelModal(); };
                 $('addSectionBtn').onclick = function() { openSectionModal(); };
                 $('saveChannelBtn').onclick = saveChannel;
@@ -1824,7 +2032,7 @@
                     renderChannels();
                 });
 
-                // تبويبات الأقسام
+                // تبويبات الأقسام (event delegation)
                 $('sectionTabs').addEventListener('click', function(e) {
                     var tab = e.target.closest('.section-tab');
                     if (!tab) return;
@@ -1833,59 +2041,66 @@
                     renderChannels();
                 });
 
-                // إغلاق Modals
-                document.querySelectorAll('[data-close]').forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        closeModal(this.getAttribute('data-close'));
-                    });
+                // إجراءات القنوات والأقسام (event delegation)
+                document.addEventListener('click', function(e) {
+                    var btn = e.target.closest('[data-action]');
+                    if (!btn) return;
+
+                    var action = btn.getAttribute('data-action');
+                    var id = btn.getAttribute('data-id');
+
+                    if (action === 'edit-channel') openChannelModal(id);
+                    else if (action === 'delete-channel') deleteChannel(id);
+                    else if (action === 'edit-section') openSectionModal(id);
+                    else if (action === 'delete-section') deleteSection(id);
                 });
 
-                document.querySelectorAll('.modal').forEach(function(m) {
-                    m.addEventListener('click', function(e) {
-                        if (e.target === m) closeModal(m.id);
+                // إغلاق Modals
+                var closeBtns = document.querySelectorAll('[data-close]');
+                for (var i = 0; i < closeBtns.length; i++) {
+                    closeBtns[i].addEventListener('click', function() {
+                        closeModal(this.getAttribute('data-close'));
                     });
-                });
+                }
+
+                var modals = document.querySelectorAll('.modal');
+                for (var j = 0; j < modals.length; j++) {
+                    (function(m) {
+                        m.addEventListener('click', function(e) {
+                            if (e.target === m) closeModal(m.id);
+                        });
+                    })(modals[j]);
+                }
 
                 document.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape') {
-                        document.querySelectorAll('.modal.active').forEach(function(m) {
-                            closeModal(m.id);
-                        });
+                        var activeModals = document.querySelectorAll('.modal.active');
+                        for (var k = 0; k < activeModals.length; k++) {
+                            closeModal(activeModals[k].id);
+                        }
                     }
                 });
 
-                // تحديث القوائم
-                updateStats();
-                renderSectionTabs();
-                renderSectionsList();
-                renderChannels();
+                // Expose
+                window.addChannel = function() { openChannelModal(); };
+                window.addSection = function() { openSectionModal(); };
             }
 
-            /* ============ Expose للـ onclick ============ */
-            window.editChannel = openChannelModal;
-            window.deleteChannel = deleteChannel;
-            window.editSection = openSectionModal;
-            window.deleteSection = deleteSection;
-            window.addChannel = function() { openChannelModal(); };
-
-            /* ============ بدء التشغيل ============ */
-            function boot() {
-                // إذا كانت هناك جلسة → ادخل مباشرة
+            /* ============================================================
+               الدخول التلقائي
+               ============================================================ */
+            function autoStart() {
                 var hasSession = false;
                 try { hasSession = localStorage.getItem(SESSION_KEY) === '1'; } catch(e) {}
 
                 if (hasSession) {
                     $('loginOverlay').classList.add('hidden');
                     $('adminPanel').classList.add('active');
-                    // حاول تحميل من التخزين أو data.json
-                    if (!loadData()) {
-                        loadFromJson().then(function() { init(); });
-                    } else {
-                        init();
-                    }
+                    bindEvents();
+                    boot();
                 } else {
                     $('loginOverlay').classList.remove('hidden');
-                    $('adminPassword').focus();
+                    setTimeout(function() { $('adminPassword').focus(); }, 300);
                 }
             }
 
@@ -1896,9 +2111,9 @@
             });
 
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', boot);
+                document.addEventListener('DOMContentLoaded', autoStart);
             } else {
-                boot();
+                autoStart();
             }
         })();
     </script>
